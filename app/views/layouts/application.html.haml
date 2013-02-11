@@ -1,0 +1,43 @@
+!!!
+%html
+%head
+  %title
+    Socialapp
+  = stylesheet_link_tag    "application", :media => "all" 
+  = javascript_include_tag "application" 
+  = csrf_meta_tags 
+
+%body
+  %header.navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        %a.btn.btn-navbar
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a{:class=>"brand", :href=>"#"}
+          Social App
+        .nav-collapse
+          %ul.nav
+            %li
+              = link_to "View Friends", friends_path 
+            %li
+              = link_to "Price List" 
+            %li
+              = link_to "Contact Us" 
+            - if current_user
+              %li
+                = link_to "Signed in as #{current_user.name}", "#"
+              %li
+                =link_to "Sign Out", signout_path, id: "sign_out"
+            -else
+              %li
+                = link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
+  .container
+    .row
+      .span9
+        = yield
+      .span3
+        %h2
+          About Us
+        Lorem ipsom aalskjlsj jljaslajsdlj lasjjsdjaja nhi lasnnlksa lkljjlah jhnv,s,xxidoll

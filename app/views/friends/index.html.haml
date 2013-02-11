@@ -1,0 +1,13 @@
+<h1>Friends</h1>
+%table.table.table-striped
+  %tr
+    %th
+      ID
+    %th
+      Name
+  - @friend_list.each do |friend|
+    %tr
+      %td
+        = link_to friend["id"], friend_path(friend["id"])
+      %td
+        = friend["name"]

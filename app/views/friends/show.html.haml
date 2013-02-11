@@ -1,0 +1,13 @@
+.content
+  .span6
+    .row
+      %img(src=@picture)
+      = @friend["name"]
+    .row
+      %h2
+        Likes
+    .row
+      %ul
+        - @likes.each do |like|
+          %li
+            = like["name"]
