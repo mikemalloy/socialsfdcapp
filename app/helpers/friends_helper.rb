@@ -6,8 +6,13 @@ module FriendsHelper
     @user = User.find(session[:user_id])
     @graph = Koala::Facebook::API.new(@user.oauth_token)
     me = @graph.get_object("me")
-    @me_node = Neography::Node.find("people", "id", me["id"])
-    if @me_node.nil? 
+    @me_node = nil
+    begin
+      @me_node = Neography::Node.find("people", "id", me["id"])
+    rescue 
+      # index not found, do nothing
+    end
+    if @me_node.nil?
       @me_node = Neography::Node.create("id" => me["id"], "name" => me["name"])
       @neo.add_node_to_index("people", "id", @me_node[:id], @me_node)
     end
